@@ -1,8 +1,14 @@
 #include "vex.h"
 #include "robot-config.h"
+#include "pid.h"
 
+eftl::PIDController voltagePIDController = eftl::PIDController(1.0,1.0,1.0,1.0);
 
+int voltControl(){
+  voltagePIDController.step(11500,Drivetrain.voltage(vex::voltageUnits::mV));
+}
 
+const double proportion = 1.0;
 void pneumA(){
        DigitalOutH.set(true);
        DigitalOutG.set(true);
@@ -58,5 +64,6 @@ void skillAuton(){
 }
 
 void autonomous(){
+  task pidControlTask(voltControl);
   skillAuton();
 }
