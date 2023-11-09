@@ -5,7 +5,8 @@
 eftl::PIDController voltagePIDController = eftl::PIDController(1.0,1.0,1.0,1.0);
 
 int voltControl(){
-  voltagePIDController.step(11500,Drivetrain.voltage(vex::voltageUnits::mV));
+  while ((1)) 
+    voltagePIDController.step(11500,Drivetrain.voltage(vex::voltageUnits::mV));
 }
 
 const double proportion = 1.0;
