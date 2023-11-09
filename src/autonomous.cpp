@@ -5,7 +5,7 @@
 eftl::PIDController voltagePIDController = eftl::PIDController(1.0,1.0,1.0,1.0);
 
 int voltControl(){
-  while ((1)) 
+  while (1) 
     voltagePIDController.step(11500,Drivetrain.voltage(vex::voltageUnits::mV));
 }
 
