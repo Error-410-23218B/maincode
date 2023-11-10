@@ -65,7 +65,7 @@ int main() {
    Controller1.ButtonR2.pressed(pneumF);
    Controller1.ButtonY.pressed(puncherOff);
    Controller1.ButtonX.pressed(puncherOn);
-  //  Competition.autonomous(autonomous);
+    Competition.autonomous(autonomous);
    Competition.drivercontrol(usercontrol);
   //  Controller1.ButtonY.pressed(puncherOff);
   

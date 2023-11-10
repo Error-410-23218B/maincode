@@ -20,6 +20,21 @@ void pneumFA(){
        DigitalOutG.set(false);
 }
 
+void skillAuton(){
+  puncherMotorGroup.setVelocity(70, percent);
+  puncherMotorGroup.setMaxTorque(100,percent);  
+  puncherMotorGroup.spin(forward);
+  wait(40,sec);
+  puncherMotorGroup.stop();
+  Drivetrain.driveFor(reverse,6,inches);
+  Drivetrain.turnFor(right,180,deg);
+  Drivetrain.driveFor(forward,25,inches);
+  Drivetrain.turnFor(right,90,deg);
+  Drivetrain.driveFor(forward,36,inches);
+  pneumA();
+  Drivetrain.driveFor(forward,30,inches);
+}
+
 void basicAuton(){
    puncherMotorGroup.setVelocity(80, percent);
    puncherMotorGroup.setMaxTorque(100,percent);
@@ -44,25 +59,7 @@ void secondBasicAuton(){
 
 }
 
-void skillAuton(){
-  puncherMotorGroup.setVelocity(70, percent);
-  puncherMotorGroup.setMaxTorque(100,percent);  
-  puncherMotorGroup.spin(forward);
-  wait(40,sec);
-  puncherMotorGroup.stop();
-  Drivetrain.driveFor(reverse,6,inches);
-  Drivetrain.turnFor(right,180,deg);
-  Drivetrain.driveFor(forward,25,inches);
-  Drivetrain.turnFor(right,90,deg);
-  Drivetrain.driveFor(forward,36,inches);
-  pneumA();
-  Drivetrain.driveFor(forward,30,inches);
-  // Drivetrain.driveFor(reverse,60,inches);
-  // Drivetrain.turnFor(right,225,degrees);
-  // Drivetrain.driveFor(forward,40,inches);
-  // pneumA();
-  // Drivetrain.driveFor(forward,90,inches);
-}
+
 
 void autonomous(){
   task pidControlTask(voltControl);
