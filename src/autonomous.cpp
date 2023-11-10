@@ -46,18 +46,19 @@ void secondBasicAuton(){
 
 void skillAuton(){
   Drivetrain.setDriveVelocity(95,percent);
-  puncherMotorGroup.stop();
   Drivetrain.driveFor(forward,20,inches);
-  Drivetrain.turnFor(left,170,deg);
+  Drivetrain.turnFor(left,130,deg);
   Drivetrain.driveFor(reverse,16,inches);
   puncherMotorGroup.setVelocity(60, percent);
   puncherMotorGroup.setMaxTorque(100,percent);  
   puncherMotorGroup.spin(forward);
   wait(40,sec);
-  Drivetrain.turnFor(right,150,degrees);
+  puncherMotorGroup.stop();
+  Drivetrain.turnFor(right,95,degrees);
   // Drivetrain.setStopping(hold);
   Drivetrain.driveFor(forward,114,inches);
-  Drivetrain.turnFor(left,135,degrees);
+  Drivetrain.turnFor(left,140,degrees);
+  Drivetrain.driveFor(reverse,60,inches);
     Drivetrain.setDriveVelocity(200,percent);
   Drivetrain.driveFor(forward,100,inches);
     Drivetrain.setDriveVelocity(95,percent);
