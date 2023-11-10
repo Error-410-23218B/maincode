@@ -16,7 +16,6 @@
 
 #include "vex.h"
 #include "robot-config.h"
-
 using namespace vex;
 competition Competition;
 void pneum(){
@@ -68,7 +67,7 @@ int main() {
   //  Competition.autonomous(autonomous);
    Competition.drivercontrol(usercontrol);
   //  Controller1.ButtonY.pressed(puncherOff);
-  
+  Controller1.ButtonB.pressed(autonomous);
   return 0;
   
 }
