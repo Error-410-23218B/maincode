@@ -52,7 +52,7 @@ void skillAuton(){
   puncherMotorGroup.setVelocity(60, percent);
   puncherMotorGroup.setMaxTorque(100,percent);  
   puncherMotorGroup.spin(forward);
-  wait(40,sec);
+  wait(30,sec);
   puncherMotorGroup.stop();
   Drivetrain.turnFor(right,95,degrees);
   // Drivetrain.setStopping(hold);
