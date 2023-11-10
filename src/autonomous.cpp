@@ -50,10 +50,10 @@ void skillAuton(){
   Drivetrain.driveFor(forward,20,inches);
   Drivetrain.turnFor(left,170,deg);
   Drivetrain.driveFor(reverse,16,inches);
-  // puncherMotorGroup.setVelocity(60, percent);
-  // puncherMotorGroup.setMaxTorque(100,percent);  
-  // puncherMotorGroup.spin(forward);
-  // wait(40,sec);
+  puncherMotorGroup.setVelocity(60, percent);
+  puncherMotorGroup.setMaxTorque(100,percent);  
+  puncherMotorGroup.spin(forward);
+  wait(40,sec);
   Drivetrain.turnFor(right,150,degrees);
   // Drivetrain.setStopping(hold);
   Drivetrain.driveFor(forward,114,inches);
