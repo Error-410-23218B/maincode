@@ -58,9 +58,9 @@ void skillAuton(){
   // Drivetrain.setStopping(hold);
   Drivetrain.driveFor(forward,114,inches);
   Drivetrain.turnFor(left,140,degrees);
-  Drivetrain.driveFor(reverse,60,inches);
+  Drivetrain.driveFor(reverse,50,inches);
     Drivetrain.setDriveVelocity(200,percent);
-  Drivetrain.driveFor(forward,100,inches);
+  Drivetrain.driveFor(forward,210,inches);
     Drivetrain.setDriveVelocity(95,percent);
     Drivetrain.turnFor(right,40,degrees);
 pneumA();
