@@ -104,5 +104,5 @@ void secondBasicAuton(){
 
 void autonomous(){
   // task pidControlTask(voltControl);
-  skillAuton();
+  basicAuton();
 }
