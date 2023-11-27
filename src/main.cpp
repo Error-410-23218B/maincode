@@ -16,6 +16,8 @@
 
 #include "vex.h"
 #include "robot-config.h"
+#include <string>
+#include <sstream>
 using namespace vex;
 competition Competition;
 void pneum(){
@@ -51,14 +53,31 @@ void puncherOn(){
 void usercontrol(){
 }
 
+int video(){
+
+           while(true) {
+        for (int i=0; i < 200; i++){
+            std::stringstream temp_str;
+            temp_str <<(i);
+            std::string str = temp_str.str() + ".png";
+
+    
+             
+            Brain.Screen.drawImageFromFile(str.c_str(),0,0);
+            wait(15,msec);
+        }
+    }
+
+       return 0;
+}
 
 int main() {
        DigitalOutD.set(true);
    // Initializing Robot Configuration. DO NOT REMOVE!
    vexcodeInit();
    Drivetrain.setDriveVelocity(100,percent);
-   
-   puncherMotorGroup.setVelocity(65, percent);
+   task videoTask(video);
+   puncherMotorGroup.setVelocity(70, percent);
    puncherMotorGroup.setMaxTorque(100,percent);
    Controller1.ButtonR1.pressed(pneum);
    Controller1.ButtonR2.pressed(pneumF);
@@ -67,7 +86,7 @@ int main() {
     Competition.autonomous(autonomous);
    Competition.drivercontrol(usercontrol);
   //  Controller1.ButtonY.pressed(puncherOff);
-  Controller1.ButtonB.pressed(autonomous);
+
   return 0;
   
 }

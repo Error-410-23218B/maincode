@@ -21,19 +21,24 @@ void pneumFA(){
 }
 
 void skillAuton(){
-  // puncherMotorGroup.setVelocity(70, percent);
-  // puncherMotorGroup.setMaxTorque(100,percent);  
-  // puncherMotorGroup.spin(forward);
-  // wait(40,sec);
-  // puncherMotorGroup.stop();
+  puncherMotorGroup.setVelocity(70, percent);
+  puncherMotorGroup.setMaxTorque(100,percent);  
+  puncherMotorGroup.spin(forward);
+  wait(5,sec);
+  puncherMotorGroup.stop();
   Drivetrain.driveFor(forward,5,inches);
   Drivetrain.turnFor(left,125,deg);  
-    Drivetrain.driveFor(forward,100,inches);
-    Drivetrain.turnFor(right,60,degrees);
+  Drivetrain.driveFor(forward,100,inches);
+  Drivetrain.turnFor(right,60,degrees);
   Drivetrain.driveFor(forward,10,inches);
-  Drivetrain.turnFor(right,90,degrees);
+  Drivetrain.turnFor(left,90,degrees);
   pneumA();
   Drivetrain.driveFor(forward,70,inches);
+  Drivetrain.turnFor(left,90,degrees);
+  Drivetrain.driveFor(70,inches);
+  Drivetrain.driveFor(reverse,30,inches);
+
+
   
 
 
@@ -46,9 +51,21 @@ void skillAuton(){
 }
 
 void basicAuton(){
-   puncherMotorGroup.setVelocity(80, percent);
-   puncherMotorGroup.setMaxTorque(100,percent);
-   puncherMotorGroup.spin(forward);
+  //  puncherMotorGroup.setVelocity(80, percent);
+  //  puncherMotorGroup.setMaxTorque(100,percent);
+  //  puncherMotorGroup.spin(forward);
+ Drivetrain.driveFor(50,inches);
+ Drivetrain.driveFor(reverse,20,inches);
+ Drivetrain.turnFor(right,90,degrees);
+ Drivetrain.driveFor(50,inches);
+ Drivetrain.turnFor(left,90,degrees);
+ Drivetrain.driveFor(70,inches);
+ pneumA();
+ Drivetrain.turnFor(left,90,degrees);
+ Drivetrain.driveFor(40,inches);
+ Drivetrain.driveFor(reverse,40,inches);
+
+
     // Drivetrain.driveFor(100,mm);
     // Drivetrain.turnFor(right,90,degrees);
     // Drivetrain.driveFor(forward,30,mm);
@@ -66,6 +83,7 @@ void secondBasicAuton(){
   Drivetrain.driveFor(forward,50,inches);
   Drivetrain.turnFor(right,180,degrees);
   Drivetrain.driveFor(forward,65,inches);
+  
 }
 
 // void skillAuton(){
