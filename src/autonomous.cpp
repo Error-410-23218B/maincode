@@ -91,11 +91,12 @@ void basicAuton(){
   pneumA();
    wait(PWaitConstant,msec);
   Drivetrain.setDriveVelocity(30,percent);
-  Drivetrain.driveFor(10.5*PConstant,inches);
+  Drivetrain.driveFor(12*PConstant,inches);
   wait(PWaitConstant,msec);
   Drivetrain.setTurnVelocity(20,percent);
   Drivetrain.turnFor(right,105*PTurnConstant,degrees);
   wait(PWaitConstant,msec);
+   Drivetrain.setDriveVelocity(50,percent);
   Drivetrain.driveFor(20*PConstant,inches);
   wait(PWaitConstant,msec);
   Drivetrain.driveFor(reverse,5*PConstant,inches);
