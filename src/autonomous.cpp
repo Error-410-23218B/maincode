@@ -79,7 +79,7 @@ void basicAuton(){
   wait(3*PWaitConstant,msec);
   Drivetrain.driveFor(reverse,10*PConstant,inches);
   wait(PWaitConstant,msec);
-  Drivetrain.turnFor(left,75*PTurnConstant,degrees);
+  Drivetrain.turnFor(left,80*PTurnConstant,degrees);
 
   
   wait(PWaitConstant,msec);
