@@ -65,15 +65,15 @@ void basicAuton(){
   //  puncherMotorGroup.spin(forward);
   //  wait(5,sec);
 
-
+wait(1000,msec);
 // Drivetrain.driveFor(forward,12*PConstant,inches);
   Drivetrain.driveFor(5*PConstant,inches);
   wait(PWaitConstant,msec);
-  Drivetrain.turnFor(right,50*PTurnConstant,degrees);
+  Drivetrain.turnFor(right,60*PTurnConstant,degrees);
   wait(PWaitConstant,msec);
   Drivetrain.driveFor(14.25*PConstant,inches);
   wait(PWaitConstant,msec);
-  Drivetrain.turnFor(left,35*PTurnConstant,degrees);
+  Drivetrain.turnFor(left,45*PTurnConstant,degrees);
   wait(PWaitConstant,msec);
   Drivetrain.driveFor(forward,5*PConstant,inches);
   wait(3*PWaitConstant,msec);
@@ -84,20 +84,23 @@ void basicAuton(){
   
   wait(PWaitConstant,msec);
   Drivetrain.driveFor(29*PConstant,inches);
-
+pneumA();
   wait(PWaitConstant,msec);
   Drivetrain.turnFor(right,65*PTurnConstant,degrees);
   wait(PWaitConstant,msec);
-  pneumA();
-   wait(PWaitConstant,msec);
   Drivetrain.setDriveVelocity(30,percent);
-  Drivetrain.driveFor(12*PConstant,inches);
+  Drivetrain.driveFor(16*PConstant,inches);
   wait(PWaitConstant,msec);
   Drivetrain.setTurnVelocity(20,percent);
   Drivetrain.turnFor(right,105*PTurnConstant,degrees);
   wait(PWaitConstant,msec);
    Drivetrain.setDriveVelocity(50,percent);
-  Drivetrain.driveFor(20*PConstant,inches);
+  Drivetrain.driveFor(18*PConstant,inches);
+  wait(PWaitConstant,msec);
+  Drivetrain.setDriveVelocity(100,percent);
+  Drivetrain.driveFor(reverse,5*PConstant,inches);
+wait(PWaitConstant,msec);
+  Drivetrain.driveFor(forward,5*PConstant,inches);
   wait(PWaitConstant,msec);
   Drivetrain.driveFor(reverse,5*PConstant,inches);
   
