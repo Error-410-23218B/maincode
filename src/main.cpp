@@ -14,12 +14,38 @@
 // Drivetrain           drivetrain    3, 4, 6, 7      
 // ---- END VEXCODE CONFIGURED DEVICES ----
 
+
 #include "vex.h"
 #include "robot-config.h"
+#include "pid.h"
 #include <string>
 #include <sstream>
+
 using namespace vex;
 competition Competition;
+
+eftl::PIDController driveVoltage(1.0,1.0,1.0,1.0);
+eftl::PIDController puncherVoltage(1.0,1.0,1.0,1.0);
+eftl::PIDController turnVoltage(1.0,1.0,1.0,1.0);
+eftl::PIDController hangingVoltage(1.0,1.0,1.0,1.0);
+
+
+int pidTask(){
+       std::ostringstream s; 
+       std::string str;
+while (1)
+{
+       
+       driveVoltage.step(11000,Drivetrain.voltage());
+       s<<Drivetrain.voltage();
+       str = s.str();
+       Brain.Screen.printAt(0,0,str.c_str());
+       wait(50,msec);
+
+}
+       return 0;
+}
+
 void pneum(){
        DigitalOutH.set(true);
        DigitalOutG.set(true);
@@ -75,8 +101,9 @@ int main() {
        DigitalOutD.set(true);
    // Initializing Robot Configuration. DO NOT REMOVE!
    vexcodeInit();
-   Drivetrain.setDriveVelocity(100,percent);
+   
    task videoTask(video);
+   task pidTask(pidTask); 
    puncherMotorGroup.setVelocity(70, percent);
    puncherMotorGroup.setMaxTorque(100,percent);
    Controller1.ButtonR1.pressed(pneum);
