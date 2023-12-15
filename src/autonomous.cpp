@@ -6,15 +6,62 @@ eftl::PIDController voltagePIDController = eftl::PIDController(1.0,1.0,1.0,1.0);
 
 
 
-double PConstant = 3.3; 
-double PTurnConstant = 2.0;
-int PWaitConstant = 50;
+const double PConstant = 3.3; 
+const double PTurnConstant = 2.0;
+const int PWaitConstant = 50;
+const double proportion = 1.0;
+
+void basicAuton(){
+   wait(PWaitConstant,msec);
+   Drivetrain.setDriveVelocity(40,percent);
+   Drivetrain.setTurnVelocity(40,percent);
+   Drivetrain.setTimeout(5,sec);
+
+wait(1000,msec);
+  Drivetrain.driveFor(5*PConstant,inches);
+  wait(PWaitConstant,msec);
+  Drivetrain.turnFor(right,60*PTurnConstant,degrees);
+  wait(PWaitConstant,msec);
+  Drivetrain.driveFor(14.25*PConstant,inches);
+  wait(PWaitConstant,msec);
+  Drivetrain.turnFor(left,45*PTurnConstant,degrees);
+  wait(PWaitConstant,msec);
+  Drivetrain.driveFor(forward,5*PConstant,inches);
+  wait(3*PWaitConstant,msec);
+  Drivetrain.driveFor(reverse,10*PConstant,inches);
+  wait(PWaitConstant,msec);
+  Drivetrain.turnFor(left,80*PTurnConstant,degrees);
+
+  
+  wait(PWaitConstant,msec);
+  Drivetrain.driveFor(29*PConstant,inches);
+  pneumA();
+  wait(PWaitConstant,msec);
+  Drivetrain.turnFor(right,65*PTurnConstant,degrees);
+  wait(PWaitConstant,msec);
+  Drivetrain.setDriveVelocity(30,percent);
+  Drivetrain.driveFor(16*PConstant,inches);
+  wait(PWaitConstant,msec);
+  Drivetrain.setTurnVelocity(20,percent);
+  Drivetrain.turnFor(right,105*PTurnConstant,degrees);
+  wait(PWaitConstant,msec);
+   Drivetrain.setDriveVelocity(50,percent);
+  Drivetrain.driveFor(18*PConstant,inches);
+  wait(PWaitConstant,msec);
+  Drivetrain.setDriveVelocity(100,percent);
+  Drivetrain.driveFor(reverse,5*PConstant,inches);
+wait(PWaitConstant,msec);
+  Drivetrain.driveFor(forward,5*PConstant,inches);
+  wait(PWaitConstant,msec);
+
+ pneumFA();
+}
+
 int voltControl(){
   while (1) 
     voltagePIDController.step(11500,Drivetrain.voltage(vex::voltageUnits::mV));
 }
 
-const double proportion = 1.0;
 void pneumA(){
        DigitalOutH.set(true);
        DigitalOutG.set(true);
@@ -53,72 +100,6 @@ void skillAuton(){
   // pneumA();
   // Drivetrain.driveFor(forward,30,inches);
   
-}
-
-void basicAuton(){
-   wait(PWaitConstant,msec);
-   Drivetrain.setDriveVelocity(40,percent);
-   Drivetrain.setTurnVelocity(40,percent);
-   Drivetrain.setTimeout(5,sec);
-  //  puncherMotorGroup.setVelocity(80, percent);
-  //  puncherMotorGroup.setMaxTorque(100,percent);
-  //  puncherMotorGroup.spin(forward);
-  //  wait(5,sec);
-
-wait(1000,msec);
-// Drivetrain.driveFor(forward,12*PConstant,inches);
-  Drivetrain.driveFor(5*PConstant,inches);
-  wait(PWaitConstant,msec);
-  Drivetrain.turnFor(right,60*PTurnConstant,degrees);
-  wait(PWaitConstant,msec);
-  Drivetrain.driveFor(14.25*PConstant,inches);
-  wait(PWaitConstant,msec);
-  Drivetrain.turnFor(left,45*PTurnConstant,degrees);
-  wait(PWaitConstant,msec);
-  Drivetrain.driveFor(forward,5*PConstant,inches);
-  wait(3*PWaitConstant,msec);
-  Drivetrain.driveFor(reverse,10*PConstant,inches);
-  wait(PWaitConstant,msec);
-  Drivetrain.turnFor(left,80*PTurnConstant,degrees);
-
-  
-  wait(PWaitConstant,msec);
-  Drivetrain.driveFor(29*PConstant,inches);
-pneumA();
-  wait(PWaitConstant,msec);
-  Drivetrain.turnFor(right,65*PTurnConstant,degrees);
-  wait(PWaitConstant,msec);
-  Drivetrain.setDriveVelocity(30,percent);
-  Drivetrain.driveFor(16*PConstant,inches);
-  wait(PWaitConstant,msec);
-  Drivetrain.setTurnVelocity(20,percent);
-  Drivetrain.turnFor(right,105*PTurnConstant,degrees);
-  wait(PWaitConstant,msec);
-   Drivetrain.setDriveVelocity(50,percent);
-  Drivetrain.driveFor(18*PConstant,inches);
-  wait(PWaitConstant,msec);
-  Drivetrain.setDriveVelocity(100,percent);
-  Drivetrain.driveFor(reverse,5*PConstant,inches);
-wait(PWaitConstant,msec);
-  Drivetrain.driveFor(forward,5*PConstant,inches);
-  wait(PWaitConstant,msec);
-  Drivetrain.driveFor(reverse,5*PConstant,inches);
-  
-
-//  Drivetrain.turnFor(right,90*PTurnConstant,degrees);
-//   wait(PWaitConstant,msec);
-
-//  Drivetrain.driveFor(18*PConstant,inches);
-//   wait(PWaitConstant,msec);
-//  Drivetrain.driveFor(reverse,18*PConstant,inches);
-//   wait(PWaitConstant,msec);
- pneumFA();
-
-  // Drivetrain.driveFor(100,mm);
-  // Drivetrain.turnFor(right,90,degrees);
-  // Drivetrain.driveFor(forward,30,mm);
-  // Drivetrain.driveFor(reverse,30,mm);
-  // Drivetrain.turnFor(right,180,degrees);   
 }
 
 void secondBasicAuton(){

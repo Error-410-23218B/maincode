@@ -112,11 +112,8 @@ int main() {
    task pidTask(pidTask); 
    puncherMotorGroup.setVelocity(70, percent);
    puncherMotorGroup.setMaxTorque(100,percent);
-
    Competition.autonomous(autonomous);
    Competition.drivercontrol(usercontrol);
   //  Controller1.ButtonY.pressed(puncherOff);
-
   return 0;
-  
 }
