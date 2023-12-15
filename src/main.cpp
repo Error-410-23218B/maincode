@@ -77,11 +77,18 @@ void puncherOn(){
 }
 
 void usercontrol(){
+   Controller1.ButtonR1.pressed(pneum);
+   Controller1.ButtonR2.pressed(pneumF);
+   Controller1.ButtonY.pressed(puncherOff);
+   Controller1.ButtonL2.pressed(puncherOff);
+   Controller1.ButtonX.pressed(puncherOn);
+   Controller1.ButtonL1.pressed(puncherOn);
+
 }
 
 int video(){
 
-           while(true) {
+   while(true) {
         for (int i=0; i < 200; i++){
             std::stringstream temp_str;
             temp_str <<(i);
@@ -98,21 +105,15 @@ int video(){
 }
 
 int main() {
-       DigitalOutD.set(true);
+   DigitalOutD.set(true);
    // Initializing Robot Configuration. DO NOT REMOVE!
    vexcodeInit();
-   
    task videoTask(video);
    task pidTask(pidTask); 
    puncherMotorGroup.setVelocity(70, percent);
    puncherMotorGroup.setMaxTorque(100,percent);
-   Controller1.ButtonR1.pressed(pneum);
-   Controller1.ButtonR2.pressed(pneumF);
-   Controller1.ButtonY.pressed(puncherOff);
-   Controller1.ButtonL2.pressed(puncherOff);
-   Controller1.ButtonX.pressed(puncherOn);
-   Controller1.ButtonL1.pressed(puncherOn);
-    Competition.autonomous(autonomous);
+
+   Competition.autonomous(autonomous);
    Competition.drivercontrol(usercontrol);
   //  Controller1.ButtonY.pressed(puncherOff);
 
