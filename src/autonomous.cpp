@@ -17,7 +17,7 @@ void basicAuton(){
    Drivetrain.setTurnVelocity(40,percent);
    Drivetrain.setTimeout(5,sec);
 
-wait(1000,msec);
+  wait(1000,msec);
   Drivetrain.driveFor(5*PConstant,inches);
   wait(PWaitConstant,msec);
   Drivetrain.turnFor(right,60*PTurnConstant,degrees);
@@ -50,7 +50,7 @@ wait(1000,msec);
   wait(PWaitConstant,msec);
   Drivetrain.setDriveVelocity(100,percent);
   Drivetrain.driveFor(reverse,5*PConstant,inches);
-wait(PWaitConstant,msec);
+  wait(PWaitConstant,msec);
   Drivetrain.driveFor(forward,5*PConstant,inches);
   wait(PWaitConstant,msec);
 
@@ -90,16 +90,10 @@ void skillAuton(){
   Drivetrain.driveFor(70,inches);
   Drivetrain.driveFor(reverse,30,inches);
 
-
-  
-
-
-
   // Drivetrain.turnFor(right,135,deg);
   // Drivetrain.driveFor(forward,36,inches);
   // pneumA();
   // Drivetrain.driveFor(forward,30,inches);
-  
 }
 
 void secondBasicAuton(){
@@ -112,6 +106,7 @@ void secondBasicAuton(){
   Drivetrain.driveFor(forward,50,inches);
   Drivetrain.turnFor(right,180,degrees);
   Drivetrain.driveFor(forward,65,inches);
+  Drivetrain.driveFor(forward,12*PConstant,inches);
 
 }
 
