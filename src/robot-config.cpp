@@ -38,14 +38,19 @@ bool DrivetrainRNeedsToBeStopped_Controller1 = true;
 int rc_auto_loop_function_Controller1() {
   // process the controller input every 20 milliseconds
   // update the motors based on the input values
+
   while(true) {
     if(RemoteControlCodeEnabled) {
+
       // calculate the drivetrain motor velocities from the controller joystick axies
       // left = Axis3 + Axis1
       // right = Axis3 - Axis1
+      
       int drivetrainLeftSideSpeed = Controller1.Axis3.position() + Controller1.Axis1.position();
       int drivetrainRightSideSpeed = Controller1.Axis3.position() - Controller1.Axis1.position();
       
+    if(!Controller1.ButtonB.pressing()){
+
       // check if the value is inside of the deadband range
       if (drivetrainLeftSideSpeed < 5 && drivetrainLeftSideSpeed > -5) {
         // check if the left motor has already been stopped
@@ -68,7 +73,7 @@ int rc_auto_loop_function_Controller1() {
           // tell the code that the right motor has been stopped
           DrivetrainRNeedsToBeStopped_Controller1 = false;
         }
-      } else {
+      } else if(Controller1.ButtonB.pressing()) {
         // reset the toggle so that the deadband code knows to stop the right motor next time the input is in the deadband range
         DrivetrainRNeedsToBeStopped_Controller1 = true;
       }
@@ -84,9 +89,78 @@ int rc_auto_loop_function_Controller1() {
         RightDriveSmart.spin(forward);
       }
     }
+else {
+
+      bool DriveTrainNeedsToBeStopped = false;
+      bool HangNeedsToBeStopped = false;
+      int drivetrainLeftSideSpeed = Controller1.Axis2.position() + Controller1.Axis1.position();
+      int drivetrainRightSideSpeed = Controller1.Axis2.position() - Controller1.Axis1.position();
+      int hangUpSpeed = Controller1.Axis4.position() + Controller1.Axis1.position();
+      int hangDownSpeed = Controller1.Axis4.position() - Controller1.Axis1.position();
+
+      if (abs(hangUpSpeed) < 5 && abs(hangDownSpeed) < 5) {
+        // check if the left motor has already been stopped
+        if (DrivetrainLNeedsToBeStopped_Controller1) {
+          // stop the left drive motor
+            leftMotorA.stop();
+            rightMotorC.stop();
+
+          // tell the code that the left motor has been stopped
+          DrivetrainLNeedsToBeStopped_Controller1 = false;
+        }
+        else {
+          DrivetrainLNeedsToBeStopped_Controller1 = true;
+        }
+
+      if (abs(drivetrainLeftSideSpeed) < 5 && abs(drivetrainRightSideSpeed) < 5) {
+        // check if the right motor has already been stopped
+        if (DriveTrainNeedsToBeStopped) {
+          // stop the right drive motor
+            leftMotorB.stop();
+            leftMotorC.stop();
+            rightMotorA.stop();
+            rightMotorB.stop();
+          // tell the code that the right motor has been stopped
+          DriveTrainNeedsToBeStopped = false;
+                                    
+        }
+      } else {
+        // reset the toggle so that the deadband code knows to stop the right motor next time the input is in the deadband range
+        DriveTrainNeedsToBeStopped = true;
+
+
+      }
+      }
+
+if(HangNeedsToBeStopped){
+  leftMotorA.setVelocity(drivetrainLeftSideSpeed,percent);
+  rightMotorC.setVelocity(drivetrainLeftSideSpeed,percent);
+  leftMotorA.spin(forward);
+  rightMotorC.spin(forward);
+}
+if (DriveTrainNeedsToBeStopped){
+  leftMotorB.setVelocity(drivetrainRightSideSpeed,percent);
+  leftMotorC.setVelocity(drivetrainRightSideSpeed,percent);
+  rightMotorA.setVelocity(drivetrainRightSideSpeed,percent);
+  rightMotorB.setVelocity(drivetrainRightSideSpeed,percent);
+
+  leftMotorB.spin(forward);
+  leftMotorC.spin(forward);
+  rightMotorA.spin(forward);
+  rightMotorB.spin(forward);
+}
+
+
+
+
+}
+    }
+
     // wait before repeating the process
     wait(20, msec);
   }
+
+
   return 0;
 }
 

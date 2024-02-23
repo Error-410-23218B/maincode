@@ -12,7 +12,7 @@
 // [Name]               [Type]        [Port(s)]
 // Controller1          controller                    
 // Drivetrain           drivetrain    3, 4, 6, 7      
-// ---- END VEXCODE CONFIGURED DEVICES ----
+// ---- END VEXCODE CONFIGURED DEVICES -- --
 
 
 #include "vex.h"
@@ -30,18 +30,47 @@ eftl::PIDController turnVoltage(1.0,1.0,1.0,1.0);
 eftl::PIDController hangingVoltage(1.0,1.0,1.0,1.0);
 
 
+void switchPneum(){
+       while(1){
+              leftMotorA.stop();
+              rightMotorC.stop();
+              }
+}
+
+void hangingUp(){
+       rightMotorC.spin(forward);
+       leftMotorA.spin(forward);
+}
+
+void hangingDown(){
+       rightMotorC.stop();
+       leftMotorA.stop();
+}
+
+
+void switchPneumF(){
+      leftMotorB.spin(forward);
+      leftMotorC.spin(forward);
+      rightMotorB.spin(forward);
+      rightMotorA.spin(forward);
+      rightMotorB.setBrake(coast);
+      leftMotorB.setBrake(coast);
+      leftMotorC.setBrake(coast);
+      rightMotorA.setBrake(coast);
+      rightMotorB.setBrake(coast);
+
+}
+
 int pidTask(){
        std::ostringstream s; 
        std::string str;
 while (1)
-{
-       
+{ 
        driveVoltage.step(11000,Drivetrain.voltage());
        s<<Drivetrain.voltage();
        str = s.str();
        Brain.Screen.printAt(0,0,str.c_str());
        wait(50,msec);
-
 }
        return 0;
 }
@@ -83,7 +112,10 @@ void usercontrol(){
    Controller1.ButtonL2.pressed(puncherOff);
    Controller1.ButtonX.pressed(puncherOn);
    Controller1.ButtonL1.pressed(puncherOn);
-
+   Controller1.ButtonA.pressed(switchPneum);
+   Controller1.ButtonUp.pressed(hangingUp);
+   Controller1.ButtonDown.pressed(hangingDown);
+   
 }
 
 int video(){
@@ -109,7 +141,7 @@ int main() {
    // Initializing Robot Configuration. DO NOT REMOVE!
    vexcodeInit();
    task videoTask(video);
-   task pidTask(pidTask); 
+// task pidTask(pidTask); 
    puncherMotorGroup.setVelocity(70, percent);
    puncherMotorGroup.setMaxTorque(100,percent);
    Competition.autonomous(autonomous);

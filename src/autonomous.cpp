@@ -4,7 +4,15 @@
 
 eftl::PIDController voltagePIDController = eftl::PIDController(1.0,1.0,1.0,1.0);
 
+void pneumA(){
+       DigitalOutH.set(true);
+       DigitalOutG.set(true);
+}
 
+void pneumFA(){
+       DigitalOutH.set(false);
+       DigitalOutG.set(false);
+}
 
 const double PConstant = 3.3; 
 const double PTurnConstant = 2.0;
@@ -42,7 +50,7 @@ void basicAuton(){
   Drivetrain.setDriveVelocity(30,percent);
   Drivetrain.driveFor(16*PConstant,inches);
   wait(PWaitConstant,msec);
-  Drivetrain.setTurnVelocity(20,percent);
+  Drivetrain.setTurnVelocity(30,percent);
   Drivetrain.turnFor(right,105*PTurnConstant,degrees);
   wait(PWaitConstant,msec);
    Drivetrain.setDriveVelocity(50,percent);
@@ -62,15 +70,7 @@ int voltControl(){
     voltagePIDController.step(11500,Drivetrain.voltage(vex::voltageUnits::mV));
 }
 
-void pneumA(){
-       DigitalOutH.set(true);
-       DigitalOutG.set(true);
-}
 
-void pneumFA(){
-       DigitalOutH.set(false);
-       DigitalOutG.set(false);
-}
 
 void skillAuton(){
   puncherMotorGroup.setVelocity(70, percent);

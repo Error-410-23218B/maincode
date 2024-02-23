@@ -10,6 +10,12 @@ extern digital_out DigitalOutH;
 extern digital_out DigitalOutG; 
 extern motor_group puncherMotorGroup;
 extern motor rightMotorC;
+extern motor leftMotorC;
+extern motor leftMotorA;
+extern motor rightMotorB;
+extern motor leftMotorB;
+extern motor rightMotorB;
+extern motor rightMotorA;
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.
  * 
