@@ -32,6 +32,9 @@ eftl::PIDController hangingVoltage(1.0,1.0,1.0,1.0);
 
 void switchPneum(){
        while(1){
+              if (Controller1.ButtonRight.pressing()){
+                     break;
+              }
               leftMotorA.stop();
               rightMotorC.stop();
               }
@@ -45,6 +48,11 @@ void hangingUp(){
 void hangingDown(){
        rightMotorC.stop();
        leftMotorA.stop();
+}
+
+void hangingReverse(){
+       rightMotorC.spin(reverse);
+       leftMotorA.spin(reverse);
 }
 
 
@@ -89,6 +97,7 @@ void puncherOff(){
 
 }
 
+
 void puncherOn(){
     puncherMotorGroup.spin(forward);
     wait(100,msec);
@@ -113,15 +122,17 @@ void usercontrol(){
    Controller1.ButtonX.pressed(puncherOn);
    Controller1.ButtonL1.pressed(puncherOn);
    Controller1.ButtonA.pressed(switchPneum);
+//    Controller1.ButtonB.pressed();
    Controller1.ButtonUp.pressed(hangingUp);
    Controller1.ButtonDown.pressed(hangingDown);
+   Controller1.ButtonLeft.pressed(hangingReverse);
    
 }
 
 int video(){
 
    while(true) {
-        for (int i=0; i < 200; i++){
+        for (int i=0; i < 200; i++) {
             std::stringstream temp_str;
             temp_str <<(i);
             std::string str = temp_str.str() + ".png";
