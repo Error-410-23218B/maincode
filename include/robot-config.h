@@ -5,6 +5,7 @@ extern brain Brain;
 // VEXcode devices
 extern controller Controller1;
 extern drivetrain Drivetrain;
+extern digital_out DigitalOutC;
 extern digital_out DigitalOutD;
 extern digital_out DigitalOutH;
 extern digital_out DigitalOutG; 
@@ -16,6 +17,7 @@ extern motor rightMotorB;
 extern motor leftMotorB;
 extern motor rightMotorB;
 extern motor rightMotorA;
+extern limit LimitSwitchE;
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.
  * 

@@ -20,11 +20,15 @@ motor_group LeftDriveSmart = motor_group(leftMotorA, leftMotorB,leftMotorC);
 motor rightMotorA = motor(PORT6, ratio6_1, true);
 motor rightMotorB = motor(PORT7, ratio6_1, false);
 motor rightMotorC = motor(PORT8, ratio6_1, false);
+
+digital_out DigitalOutC = digital_out(Brain.ThreeWirePort.C);
 digital_out DigitalOutD = digital_out(Brain.ThreeWirePort.D);
 digital_out DigitalOutH = digital_out(Brain.ThreeWirePort.H);
 digital_out DigitalOutG = digital_out(Brain.ThreeWirePort.G);
+
 motor_group RightDriveSmart = motor_group(rightMotorA, rightMotorB,rightMotorC);
 drivetrain Drivetrain = drivetrain(LeftDriveSmart, RightDriveSmart, 319.19, 295, 40, mm, 1);
+limit LimitSwitchE = limit(Brain.ThreeWirePort.E);
 
 
 // VEXcode generated functions
@@ -158,7 +162,7 @@ if (DriveTrainNeedsToBeStopped){
 
     // wait before repeating the process
     wait(20, msec);
-  }
+  } 
 
 
   return 0;

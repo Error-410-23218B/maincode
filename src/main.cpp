@@ -55,6 +55,33 @@ void hangingReverse(){
        leftMotorA.spin(reverse);
 }
 
+void limitSwitch(){
+       puncherMotorGroup.spin(forward);
+       wait(5,seconds);
+}
+
+void pOn(){
+       DigitalOutC.set(true);
+       DigitalOutD.set(true);
+}
+
+void pOff(){
+       DigitalOutC.set(false);
+       DigitalOutD.set(false);
+}
+
+void limitSwitchOff(){
+       puncherMotorGroup.stop();
+}
+
+int limitLoop(){
+       while (1)
+       {
+              LimitSwitchE.pressed(limitSwitch);
+              LimitSwitchE.released(limitSwitchOff);
+       }
+   return 0;    
+}
 
 void switchPneumF(){
       leftMotorB.spin(forward);
@@ -152,7 +179,10 @@ int main() {
    // Initializing Robot Configuration. DO NOT REMOVE!
    vexcodeInit();
    task videoTask(video);
+   task limitSwitch(limitLoop);
 // task pidTask(pidTask); 
+   Controller1.ButtonLeft.pressed(pOn);
+   Controller1.ButtonRight.pressed(pOff);
    puncherMotorGroup.setVelocity(70, percent);
    puncherMotorGroup.setMaxTorque(100,percent);
    Competition.autonomous(autonomous);

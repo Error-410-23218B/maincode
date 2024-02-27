@@ -63,6 +63,25 @@ void basicAuton(){
   wait(PWaitConstant,msec);
 
  pneumFA();
+
+
+//////////////////////////////////////////////////////////////
+wait(PWaitConstant,msec);
+Drivetrain.setDriveVelocity(40,percent);
+Drivetrain.setTurnVelocity(40,percent);
+Drivetrain.setTimeout(5,sec);
+
+Drivetrain.driveFor(5*PConstant,inches);
+wait(PWaitConstant,msec);
+Drivetrain.turnFor(right,45*PTurnConstant,degrees);
+Drivetrain.driveFor(30*PConstant,inches);
+Drivetrain.driveFor()
+
+
+
+
+
+
 }
 
 int voltControl(){
