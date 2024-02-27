@@ -144,10 +144,10 @@ void puncherOn(){
 void usercontrol(){
    Controller1.ButtonR1.pressed(pneum);
    Controller1.ButtonR2.pressed(pneumF);
-   Controller1.ButtonY.pressed(puncherOff);
-   Controller1.ButtonL2.pressed(puncherOff);
+//    Controller1.ButtonY.pressed(puncherOff);
+//    Controller1.ButtonL2.pressed(puncherOff);
    Controller1.ButtonX.pressed(puncherOn);
-   Controller1.ButtonL1.pressed(puncherOn);
+//    Controller1.ButtonL1.pressed(puncherOn);
    Controller1.ButtonA.pressed(switchPneum);
 //    Controller1.ButtonB.pressed();
    Controller1.ButtonUp.pressed(hangingUp);
