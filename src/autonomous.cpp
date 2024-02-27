@@ -74,7 +74,11 @@ Drivetrain.setTimeout(5,sec);
 Drivetrain.driveFor(5*PConstant,inches);
 wait(PWaitConstant,msec);
 Drivetrain.turnFor(right,45*PTurnConstant,degrees);
+wait(PWaitConstant,msec);
 Drivetrain.driveFor(30*PConstant,inches);
+wait(PWaitConstant,msec);
+Drivetrain.driveFor(reverse,30*PConstant,inches);
+wait(PWaitConstant,msec);
 Drivetrain.driveFor()
 
 
