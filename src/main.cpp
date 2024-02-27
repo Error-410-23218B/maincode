@@ -152,8 +152,8 @@ void usercontrol(){
 //    Controller1.ButtonB.pressed();
    Controller1.ButtonUp.pressed(hangingUp);
    Controller1.ButtonDown.pressed(hangingDown);
-   Controller1.ButtonLeft.pressed(hangingReverse);
-   
+   Controller1.ButtonLeft.pressed(pOn);
+   Controller1.ButtonRight.pressed(pOff);
 }
 
 int video(){
@@ -181,8 +181,7 @@ int main() {
    task videoTask(video);
    task limitSwitch(limitLoop);
 // task pidTask(pidTask); 
-   Controller1.ButtonLeft.pressed(pOn);
-   Controller1.ButtonRight.pressed(pOff);
+   
    puncherMotorGroup.setVelocity(70, percent);
    puncherMotorGroup.setMaxTorque(100,percent);
    Competition.autonomous(autonomous);

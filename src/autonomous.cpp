@@ -79,7 +79,21 @@ Drivetrain.driveFor(30*PConstant,inches);
 wait(PWaitConstant,msec);
 Drivetrain.driveFor(reverse,30*PConstant,inches);
 wait(PWaitConstant,msec);
-Drivetrain.driveFor()
+Drivetrain.turnFor(left,100*PTurnConstant,degrees);
+wait(PWaitConstant,msec);
+Drivetrain.driveFor(forward,40*PConstant,inches);
+wait(PWaitConstant,msec);
+Drivetrain.turnFor(right,90*PTurnConstant,degrees);
+wait(PWaitConstant,msec);
+Drivetrain.driveFor(forward,60*PConstant,inches);
+wait(PWaitConstant,msec);
+Drivetrain.turnFor(right,90*PTurnConstant,degrees);
+wait(PWaitConstant,msec);
+Drivetrain.setDriveVelocity(80,percent);
+wait(PWaitConstant,msec);
+Drivetrain.driveFor(40*PConstant,inches);
+wait(PWaitConstant,msec);
+Drivetrain.driveFor(reverse,40*PConstant,inches);
 
 
 
