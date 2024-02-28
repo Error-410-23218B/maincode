@@ -211,16 +211,16 @@ int rc_auto_loop_function_Controller1_backup() {
         rightMotorA.setVelocity(100,percent);
         rightMotorB.setVelocity(100,percent);
 
-        leftMotorB.spin(reverse);
+        leftMotorB.spin(forward);
         leftMotorC.spin(reverse);
         rightMotorA.spin(reverse);
-        rightMotorB.spin(reverse);
+        rightMotorB.spin(forward);
         Controller1UpDownButtonsControlMotorsStopped = false;
       } else if (Controller1.ButtonDown.pressing()) {
-           leftMotorB.spin(forward);
-        leftMotorC.spin(forward);
+           leftMotorB.spin(reverse);
+        leftMotorC.spin(reverse);
         rightMotorA.spin(forward);
-        rightMotorB.spin(forward);
+        rightMotorB.spin(reverse);
         Controller1UpDownButtonsControlMotorsStopped = false;
       } else if (!Controller1UpDownButtonsControlMotorsStopped) {
               leftMotorB.stop();
@@ -231,7 +231,7 @@ int rc_auto_loop_function_Controller1_backup() {
         Controller1UpDownButtonsControlMotorsStopped = true;
       }
 
-          if(Controller1.ButtonA.pressing()){
+    if(Controller1.ButtonA.pressing()){
       hanging = false;
     }
 
@@ -241,7 +241,7 @@ int rc_auto_loop_function_Controller1_backup() {
         // check if the left motor has already been stopped
         if (DrivetrainLNeedsToBeStopped_Controller1) {
           // stop the left drive motor
-          leftMotorC.stop();
+          leftMotorA.stop();
           // tell the code that the left motor has been stopped
           DrivetrainLNeedsToBeStopped_Controller1 = false;
         }
