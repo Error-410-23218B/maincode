@@ -216,44 +216,67 @@ int rc_auto_loop_function_Controller1_backup() {
     
 
 if (hanging){
-  // check if the value is inside of the deadband range
-      if (drivetrainLeftSideSpeed < 5 && drivetrainLeftSideSpeed > -5) {
+  bool DrivetrainNeedsToBeStopped_Controller1 = true;
+  bool HangingNeedsToBeStopped = true;
+     int HangingSpeed = Controller1.Axis3.position();
+      drivetrainLeftSideSpeed = Controller1.Axis2.position() + Controller1.Axis1.position();
+      drivetrainRightSideSpeed = Controller1.Axis2.position() - Controller1.Axis1.position();
+
+          if (HangingSpeed < 5 && HangingSpeed > -5) {
         // check if the left motor has already been stopped
-        if (DrivetrainLNeedsToBeStopped_Controller1) {
+        if (HangingNeedsToBeStopped) {
           // stop the left drive motor
-          leftMotorA.stop();
+        leftMotorB.stop();
+        leftMotorC.stop();
+        rightMotorA.stop();
+        rightMotorB.stop();
           // tell the code that the left motor has been stopped
-          DrivetrainLNeedsToBeStopped_Controller1 = false;
+          HangingNeedsToBeStopped = false;
         }
       } else {
         // reset the toggle so that the deadband code knows to stop the left motor nexttime the input is in the deadband range
-        DrivetrainLNeedsToBeStopped_Controller1 = true;
+        HangingNeedsToBeStopped = true;
       }
-      // check if the value is inside of the deadband range
-      if (drivetrainRightSideSpeed < 5 && drivetrainRightSideSpeed > -5) {
-        // check if the right motor has already been stopped
-        if (DrivetrainRNeedsToBeStopped_Controller1) {
-          // stop the right drive motor
+
+          if (HangingNeedsToBeStopped) {
+        leftMotorB.setVelocity(HangingSpeed,percent);
+        leftMotorC.setVelocity(HangingSpeed,percent);
+        rightMotorA.setVelocity(HangingSpeed,percent);
+        rightMotorB.setVelocity(HangingSpeed,percent);
+        leftMotorB.spin(forward);
+        leftMotorC.spin(forward);
+        rightMotorA.spin(forward);
+        rightMotorB.spin(forward);
+     
+      }
+
+
+
+
+        if (abs(drivetrainLeftSideSpeed) < 5 && abs(drivetrainRightSideSpeed) < 5) {
+        // check if the motors have already been stopped
+        if (DrivetrainNeedsToBeStopped_Controller1) {
+          // stop the drive motors
+          leftMotorA.stop();
           rightMotorC.stop();
-          // tell the code that the right motor has been stopped
-          DrivetrainRNeedsToBeStopped_Controller1 = false;
+          // tell the code that the motors have been stopped
+          DrivetrainNeedsToBeStopped_Controller1 = false;
         }
       } else {
-        // reset the toggle so that the deadband code knows to stop the right motor next time the input is in the deadband range
-        DrivetrainRNeedsToBeStopped_Controller1 = true;
+        // reset the toggle so that the deadband code knows to stop the motors next time the input is in the deadband range
+        DrivetrainNeedsToBeStopped_Controller1 = true;
       }
       
       // only tell the left drive motor to spin if the values are not in the deadband range
-      if (DrivetrainLNeedsToBeStopped_Controller1) {
+      if (DrivetrainNeedsToBeStopped_Controller1) {
         leftMotorA.setVelocity(drivetrainLeftSideSpeed, percent);
         leftMotorA.spin(forward);
       }
       // only tell the right drive motor to spin if the values are not in the deadband range
-      if (DrivetrainRNeedsToBeStopped_Controller1) {
+      if (DrivetrainNeedsToBeStopped_Controller1) {
         rightMotorC.setVelocity(drivetrainRightSideSpeed, percent);
         rightMotorC.spin(forward);
       }
-
 
 
 
@@ -265,14 +288,15 @@ if (hanging){
         rightMotorB.setVelocity(100,percent);
 
         leftMotorB.spin(forward);
-        leftMotorC.spin(reverse);
-        rightMotorA.spin(reverse);
+        leftMotorC.spin(forward);
+        rightMotorA.spin(forward);
         rightMotorB.spin(forward);
+
         Controller1UpDownButtonsControlMotorsStopped = false;
       } else if (Controller1.ButtonDown.pressing()) {
         leftMotorB.spin(reverse);
         leftMotorC.spin(reverse);
-        rightMotorA.spin(forward);
+        rightMotorA.spin(reverse);
         rightMotorB.spin(reverse);
         Controller1UpDownButtonsControlMotorsStopped = false;
       } else if (!Controller1UpDownButtonsControlMotorsStopped) {
