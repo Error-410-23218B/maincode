@@ -183,12 +183,12 @@ int main() {
 
    DigitalOutG.set(true);
    Controller1.ButtonB.pressed(pneumShift);
-   Controller1.ButtonUp.pressed(hangingUp);
-   Controller1.ButtonDown.pressed(hangingDown);
+//    Controller1.ButtonUp.pressed(hangingUp);
+//    Controller1.ButtonDown.pressed(hangingDown);
       Controller1.ButtonR1.pressed(pneum);
    Controller1.ButtonR2.pressed(pneumF);
-      Controller1.ButtonLeft.pressed(pOn);
-   Controller1.ButtonRight.pressed(pOff);
+//       Controller1.ButtonLeft.pressed(pOn);
+//    Controller1.ButtonRight.pressed(pOff);
    Controller1.ButtonA.pressed(pneumShiftF);
 
    Controller1.ButtonX.pressed(puncherOn);
