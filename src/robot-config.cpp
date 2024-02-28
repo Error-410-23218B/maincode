@@ -217,13 +217,13 @@ int rc_auto_loop_function_Controller1_backup() {
         rightMotorB.spin(forward);
         Controller1UpDownButtonsControlMotorsStopped = false;
       } else if (Controller1.ButtonDown.pressing()) {
-           leftMotorB.spin(reverse);
+        leftMotorB.spin(reverse);
         leftMotorC.spin(reverse);
         rightMotorA.spin(forward);
         rightMotorB.spin(reverse);
         Controller1UpDownButtonsControlMotorsStopped = false;
       } else if (!Controller1UpDownButtonsControlMotorsStopped) {
-              leftMotorB.stop();
+        leftMotorB.stop();
         leftMotorC.stop();
         rightMotorA.stop();
         rightMotorB.stop();
