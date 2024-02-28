@@ -30,24 +30,21 @@ eftl::PIDController turnVoltage(1.0,1.0,1.0,1.0);
 eftl::PIDController hangingVoltage(1.0,1.0,1.0,1.0);
 
 
-void switchPneum(){
-       while(1){
-              if (Controller1.ButtonRight.pressing()){
-                     break;
-              }
-              leftMotorA.stop();
-              rightMotorC.stop();
-              }
-}
+
 
 void hangingUp(){
-       rightMotorC.spin(forward);
-       leftMotorA.spin(forward);
+
+    rightMotorB.spin(forward);
+    rightMotorA.spin(forward);
+    leftMotorB.spin(forward);
+    leftMotorA.spin(forward);
 }
 
 void hangingDown(){
-       rightMotorC.stop();
-       leftMotorA.stop();
+    rightMotorB.spin(reverse);
+    rightMotorA.spin(reverse);
+    leftMotorB.spin(reverse);
+    leftMotorA.spin(reverse);
 }
 
 void hangingReverse(){
@@ -59,6 +56,15 @@ void limitSwitch(){
        puncherMotorGroup.spin(forward);
        wait(5,seconds);
 }
+
+void pneumShift(){
+       DigitalOutG.set(false);
+}
+
+void pneumShiftF(){
+       DigitalOutG.set(true);
+}
+
 
 void pOn(){
        DigitalOutC.set(true);
@@ -142,18 +148,17 @@ void puncherOn(){
 }
 
 void usercontrol(){
-   Controller1.ButtonR1.pressed(pneum);
-   Controller1.ButtonR2.pressed(pneumF);
+
 //    Controller1.ButtonY.pressed(puncherOff);
 //    Controller1.ButtonL2.pressed(puncherOff);
-   Controller1.ButtonX.pressed(puncherOn);
 //    Controller1.ButtonL1.pressed(puncherOn);
-   Controller1.ButtonA.pressed(switchPneum);
+
 //    Controller1.ButtonB.pressed();
-   Controller1.ButtonUp.pressed(hangingUp);
-   Controller1.ButtonDown.pressed(hangingDown);
-   Controller1.ButtonLeft.pressed(pOn);
-   Controller1.ButtonRight.pressed(pOff);
+
+
+   
+
+
 }
 
 int video(){
@@ -175,6 +180,22 @@ int video(){
 }
 
 int main() {
+
+   DigitalOutG.set(true);
+   Controller1.ButtonB.pressed(pneumShift);
+   Controller1.ButtonUp.pressed(hangingUp);
+   Controller1.ButtonDown.pressed(hangingDown);
+      Controller1.ButtonR1.pressed(pneum);
+   Controller1.ButtonR2.pressed(pneumF);
+      Controller1.ButtonLeft.pressed(pOn);
+   Controller1.ButtonRight.pressed(pOff);
+   Controller1.ButtonA.pressed(pneumShiftF);
+       rightMotorB.setVelocity(100,percent);
+       rightMotorA.setVelocity(100,percent);
+       leftMotorB.setVelocity(100,percent);
+       leftMotorA.setVelocity(100,percent);
+   Controller1.ButtonX.pressed(puncherOn);
+
    DigitalOutD.set(true);
    // Initializing Robot Configuration. DO NOT REMOVE!
    vexcodeInit();
