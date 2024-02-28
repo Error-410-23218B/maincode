@@ -190,10 +190,7 @@ int main() {
       Controller1.ButtonLeft.pressed(pOn);
    Controller1.ButtonRight.pressed(pOff);
    Controller1.ButtonA.pressed(pneumShiftF);
-       rightMotorB.setVelocity(100,percent);
-       rightMotorA.setVelocity(100,percent);
-       leftMotorB.setVelocity(100,percent);
-       leftMotorA.setVelocity(100,percent);
+
    Controller1.ButtonX.pressed(puncherOn);
 
    DigitalOutD.set(true);

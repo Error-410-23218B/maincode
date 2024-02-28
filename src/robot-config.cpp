@@ -1,4 +1,5 @@
 #include "vex.h"
+#include <iostream>
 
 using namespace vex;
 using signature = vision::signature;
@@ -188,11 +189,13 @@ int rc_auto_loop_function_Controller1() {
 }
 
 bool Controller1UpDownButtonsControlMotorsStopped = true;
-bool hanging = false;
 int rc_auto_loop_function_Controller1_backup() {
+  bool hanging = false;
+
   // process the controller input every 20 milliseconds
   // update the motors based on the input values
   while(true) {
+    std::cout << hanging;
     if(RemoteControlCodeEnabled) {
       // calculate the drivetrain motor velocities from the controller joystick axies
       // left = Axis3 + Axis1
@@ -201,41 +204,18 @@ int rc_auto_loop_function_Controller1_backup() {
       int drivetrainRightSideSpeed = Controller1.Axis3.position() - Controller1.Axis1.position();
 
 
-
-
-
-      if (Controller1.ButtonUp.pressing()) {
-        hanging = true;
-        leftMotorB.setVelocity(100,percent);
-        leftMotorC.setVelocity(100,percent);
-        rightMotorA.setVelocity(100,percent);
-        rightMotorB.setVelocity(100,percent);
-
-        leftMotorB.spin(forward);
-        leftMotorC.spin(reverse);
-        rightMotorA.spin(reverse);
-        rightMotorB.spin(forward);
-        Controller1UpDownButtonsControlMotorsStopped = false;
-      } else if (Controller1.ButtonDown.pressing()) {
-        leftMotorB.spin(reverse);
-        leftMotorC.spin(reverse);
-        rightMotorA.spin(forward);
-        rightMotorB.spin(reverse);
-        Controller1UpDownButtonsControlMotorsStopped = false;
-      } else if (!Controller1UpDownButtonsControlMotorsStopped) {
-        leftMotorB.stop();
-        leftMotorC.stop();
-        rightMotorA.stop();
-        rightMotorB.stop();
-        // set the toggle so that we don't constantly tell the motor to stop when the buttons are released
-        Controller1UpDownButtonsControlMotorsStopped = true;
-      }
-
     if(Controller1.ButtonA.pressing()){
       hanging = false;
     }
 
-      if (hanging){
+    
+    if(Controller1.ButtonB.pressing()){
+      hanging = true;
+    }
+
+    
+
+if (hanging){
   // check if the value is inside of the deadband range
       if (drivetrainLeftSideSpeed < 5 && drivetrainLeftSideSpeed > -5) {
         // check if the left motor has already been stopped
@@ -273,6 +253,38 @@ int rc_auto_loop_function_Controller1_backup() {
         rightMotorC.setVelocity(drivetrainRightSideSpeed, percent);
         rightMotorC.spin(forward);
       }
+
+
+
+
+      if (Controller1.ButtonUp.pressing()) {
+        
+        leftMotorB.setVelocity(100,percent);
+        leftMotorC.setVelocity(100,percent);
+        rightMotorA.setVelocity(100,percent);
+        rightMotorB.setVelocity(100,percent);
+
+        leftMotorB.spin(forward);
+        leftMotorC.spin(reverse);
+        rightMotorA.spin(reverse);
+        rightMotorB.spin(forward);
+        Controller1UpDownButtonsControlMotorsStopped = false;
+      } else if (Controller1.ButtonDown.pressing()) {
+        leftMotorB.spin(reverse);
+        leftMotorC.spin(reverse);
+        rightMotorA.spin(forward);
+        rightMotorB.spin(reverse);
+        Controller1UpDownButtonsControlMotorsStopped = false;
+      } else if (!Controller1UpDownButtonsControlMotorsStopped) {
+        leftMotorB.stop();
+        leftMotorC.stop();
+        rightMotorA.stop();
+        rightMotorB.stop();
+        // set the toggle so that we don't constantly tell the motor to stop when the buttons are released
+        Controller1UpDownButtonsControlMotorsStopped = true;
+      }
+
+
 }
 
     else{
