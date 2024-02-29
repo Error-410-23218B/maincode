@@ -195,6 +195,14 @@ int rc_auto_loop_function_Controller1_backup() {
   // process the controller input every 20 milliseconds
   // update the motors based on the input values
   while(true) {
+
+    std::cout << leftMotorA.velocity(rpm) << std::endl;
+    std::cout << leftMotorB.velocity(rpm)  << std::endl;
+    std::cout << leftMotorC.velocity(rpm)  << std::endl;
+    std::cout << rightMotorA.velocity(rpm) << std::endl;
+    std::cout << rightMotorB.velocity(rpm) << std::endl;
+    std::cout << rightMotorC.velocity(rpm) << std::endl;
+
     std::cout << hanging;
     if(RemoteControlCodeEnabled) {
       // calculate the drivetrain motor velocities from the controller joystick axies
@@ -216,6 +224,7 @@ int rc_auto_loop_function_Controller1_backup() {
     
 
 if (hanging){
+  std::cout << "Hanging Drive" << std::endl;
   bool DrivetrainNeedsToBeStopped_Controller1 = true;
   bool HangingNeedsToBeStopped = true;
      int HangingSpeed = Controller1.Axis3.position();
@@ -243,10 +252,14 @@ if (hanging){
         leftMotorC.setVelocity(HangingSpeed,percent);
         rightMotorA.setVelocity(HangingSpeed,percent);
         rightMotorB.setVelocity(HangingSpeed,percent);
-        leftMotorB.spin(forward);
-        leftMotorC.spin(forward);
-        rightMotorA.spin(forward);
-        rightMotorB.spin(forward);
+        // leftMotorB.spin(forward);
+        // leftMotorC.spin(forward);
+        // rightMotorA.spin(forward);
+        // rightMotorB.spin(forward);
+        leftMotorB.spin(reverse);
+        leftMotorC.spin(reverse);
+        rightMotorA.spin(reverse);
+        rightMotorB.spin(reverse);
      
       }
 
@@ -270,12 +283,14 @@ if (hanging){
       // only tell the left drive motor to spin if the values are not in the deadband range
       if (DrivetrainNeedsToBeStopped_Controller1) {
         leftMotorA.setVelocity(drivetrainLeftSideSpeed, percent);
-        leftMotorA.spin(forward);
+        // leftMotorA.spin(forward);
+        leftMotorA.spin(reverse);
       }
       // only tell the right drive motor to spin if the values are not in the deadband range
       if (DrivetrainNeedsToBeStopped_Controller1) {
         rightMotorC.setVelocity(drivetrainRightSideSpeed, percent);
-        rightMotorC.spin(forward);
+        // rightMotorC.spin(forward);
+         rightMotorC.spin(reverse);
       }
 
 
@@ -287,17 +302,27 @@ if (hanging){
         rightMotorA.setVelocity(100,percent);
         rightMotorB.setVelocity(100,percent);
 
-        leftMotorB.spin(forward);
-        leftMotorC.spin(forward);
-        rightMotorA.spin(forward);
-        rightMotorB.spin(forward);
+        // leftMotorB.spin(forward);
+        // leftMotorC.spin(forward);
+        // rightMotorA.spin(forward);
+        // rightMotorB.spin(forward);
 
-        Controller1UpDownButtonsControlMotorsStopped = false;
-      } else if (Controller1.ButtonDown.pressing()) {
         leftMotorB.spin(reverse);
         leftMotorC.spin(reverse);
         rightMotorA.spin(reverse);
         rightMotorB.spin(reverse);
+
+        Controller1UpDownButtonsControlMotorsStopped = false;
+      } else if (Controller1.ButtonDown.pressing()) {
+        // leftMotorB.spin(reverse);
+        // leftMotorC.spin(reverse);
+        // rightMotorA.spin(reverse);
+        // rightMotorB.spin(reverse);
+
+        leftMotorB.spin(forward);
+        leftMotorC.spin(forward);
+        rightMotorA.spin(forward);
+        rightMotorB.spin(forward);
         Controller1UpDownButtonsControlMotorsStopped = false;
       } else if (!Controller1UpDownButtonsControlMotorsStopped) {
         leftMotorB.stop();
@@ -312,6 +337,7 @@ if (hanging){
 }
 
     else{
+      std::cout << "Normal Drive" << std::endl;
       int drivetrainLeftSideSpeed = Controller1.Axis3.position() + Controller1.Axis1.position();
       int drivetrainRightSideSpeed = Controller1.Axis3.position() - Controller1.Axis1.position();
       // check if the value is inside of the deadband range
