@@ -148,7 +148,7 @@ void puncherOn(){
 }
 
 void usercontrol(){
-
+   DigitalOutG.set(true);
 //    Controller1.ButtonY.pressed(puncherOff);
 //    Controller1.ButtonL2.pressed(puncherOff);
 //    Controller1.ButtonL1.pressed(puncherOn);
