@@ -117,7 +117,7 @@ while (1)
 }
 
 void pneum(){
-       DigitalOutH.set(true);
+       DigitalOutC.set(true);
        DigitalOutG.set(true);
 }
 

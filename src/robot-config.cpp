@@ -14,13 +14,13 @@ motor puncherMotorA = motor(PORT1,ratio36_1,false);
 motor puncherMotorB = motor(PORT10,ratio36_1,true);
 motor_group puncherMotorGroup = motor_group(puncherMotorA,puncherMotorB);
 
-motor leftMotorA = motor(PORT3, ratio6_1, false);
-motor leftMotorB = motor(PORT4, ratio6_1, true);
-motor leftMotorC = motor(PORT5, ratio6_1, false);
+motor leftMotorA = motor(PORT3, ratio18_1, false);
+motor leftMotorB = motor(PORT4, ratio18_1, true);
+motor leftMotorC = motor(PORT5, ratio18_1, false);
 motor_group LeftDriveSmart = motor_group(leftMotorA, leftMotorB,leftMotorC);
-motor rightMotorA = motor(PORT6, ratio6_1, true);
-motor rightMotorB = motor(PORT7, ratio6_1, false);
-motor rightMotorC = motor(PORT8, ratio6_1, true);
+motor rightMotorA = motor(PORT6, ratio18_1, true);
+motor rightMotorB = motor(PORT7, ratio18_1, false);
+motor rightMotorC = motor(PORT8, ratio18_1, true);
 
 digital_out DigitalOutC = digital_out(Brain.ThreeWirePort.C);
 digital_out DigitalOutD = digital_out(Brain.ThreeWirePort.D);
@@ -231,7 +231,7 @@ if (hanging){
       drivetrainLeftSideSpeed = Controller1.Axis2.position() + Controller1.Axis1.position();
       drivetrainRightSideSpeed = Controller1.Axis2.position() - Controller1.Axis1.position();
 
-          if (HangingSpeed < 5 && HangingSpeed > -5) {
+    if (HangingSpeed < 5 && HangingSpeed > -5) {
         // check if the left motor has already been stopped
         if (HangingNeedsToBeStopped) {
           // stop the left drive motor
@@ -301,6 +301,10 @@ if (hanging){
         leftMotorC.setVelocity(100,percent);
         rightMotorA.setVelocity(100,percent);
         rightMotorB.setVelocity(100,percent);
+          leftMotorB.setMaxTorque(100,percent);
+        leftMotorC.setMaxTorque(100,percent);
+        rightMotorA.setMaxTorque(100,percent);
+        rightMotorB.setMaxTorque(100,percent);
 
         // leftMotorB.spin(forward);
         // leftMotorC.spin(forward);
@@ -309,8 +313,8 @@ if (hanging){
 
         leftMotorB.spin(reverse);
         leftMotorC.spin(reverse);
-        rightMotorA.spin(reverse);
-        rightMotorB.spin(reverse);
+         rightMotorA.spin(reverse);
+        // rightMotorB.spin(reverse);
 
         Controller1UpDownButtonsControlMotorsStopped = false;
       } else if (Controller1.ButtonDown.pressing()) {
@@ -322,7 +326,7 @@ if (hanging){
         leftMotorB.spin(forward);
         leftMotorC.spin(forward);
         rightMotorA.spin(forward);
-        rightMotorB.spin(forward);
+        // rightMotorB.spin(forward);
         Controller1UpDownButtonsControlMotorsStopped = false;
       } else if (!Controller1UpDownButtonsControlMotorsStopped) {
         leftMotorB.stop();
@@ -376,7 +380,7 @@ if (hanging){
       if (DrivetrainRNeedsToBeStopped_Controller1) {
         RightDriveSmart.setVelocity(drivetrainRightSideSpeed, percent);
         RightDriveSmart.spin(forward);
-      }
+      } 
     }
 
 

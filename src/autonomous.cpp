@@ -102,6 +102,18 @@ Drivetrain.driveFor(reverse,40*PConstant,inches);
 
 }
 
+void natAuton(){
+   Drivetrain.setDriveVelocity(40,percent);
+   Drivetrain.setTurnVelocity(40,percent);
+   Drivetrain.setTimeout(5,sec);
+   
+  Drivetrain.driveFor(forward,40*PConstant,inches);
+  wait(PWaitConstant,msec);
+
+
+}
+
+
 int voltControl(){
   while (1) 
     voltagePIDController.step(11500,Drivetrain.voltage(vex::voltageUnits::mV));
